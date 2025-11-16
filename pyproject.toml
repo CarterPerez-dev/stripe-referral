@@ -101,7 +101,7 @@ stripe_referral = ["py.typed"]
 [tool.setuptools.data-files]
 "alembic" = [
     "alembic/env.py",
-    "alembic/README.rst",
+    "alembic/README",
     "alembic/script.py.mako",
     "alembic/versions/.gitkeep",
 ]
