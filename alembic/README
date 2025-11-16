@@ -1,0 +1,28 @@
+©AngelaMos | 2025 | CertGames.com
+
+Alembic Database Migrations
+============================
+
+This directory contains Alembic migration scripts for stripe-referral
+
+## Usage
+
+Create a migration:
+```bash
+alembic revision --autogenerate -m "Description of changes"
+```
+
+Apply migrations:
+```bash
+alembic upgrade head
+```
+
+Rollback one migration:
+```bash
+alembic downgrade -1
+```
+
+View migration history:
+```bash
+alembic history
+```

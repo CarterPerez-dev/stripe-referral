@@ -1,0 +1,367 @@
+[project]
+name = "stripe-referral"
+version = "0.1.0"
+description = "Framework agnostic referral program package with Stripe Connect integration"
+requires-python = ">=3.11"
+readme = "README.rst"
+license = {text = "MIT"}
+authors = [
+    {name = "CarterPerez-dev", email = "carterperez@certgames.com"}
+]
+keywords = [
+    "referral",
+    "affiliate",
+    "code",
+    "stripe-code",
+    "stripe",
+    "stripe-connect",
+    "wise",
+    "payout",
+    "invite-code",
+    "saas",
+    "subscription",
+    "marketing"
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Office/Business :: Financial",
+    "Typing :: Typed",
+]
+
+dependencies = [
+    "alembic==1.17.2",
+    "pydantic==2.12.4",
+    "pydantic-settings==2.12.0",
+    "python-dotenv==1.2.1",
+    "sqlalchemy==2.0.44",
+    "stripe==13.2.0",
+    "psycopg2-binary==2.9.11",
+]
+
+[project.optional-dependencies]
+dev = [
+    "bandit[toml]==1.8.6",
+    "deptry==0.24.0",
+    "factory-boy==3.3.3",
+    "faker==38.0.0",
+    "freezegun==1.5.5",
+    "ipython==9.7.0",
+    "mypy==1.18.2",
+    "pip-audit==2.9.0",
+    "pip-tools==7.5.0",
+    "pre-commit==4.3.0",
+    "pytest==8.4.1",
+    "pytest-asyncio==1.3.0",
+    "pytest-cov==6.2.1",
+    "pytest-dotenv==0.5.2",
+    "pytest-env==1.1.5",
+    "pytest-mock==3.14.1",
+    "pylint==3.3.8",
+    "pylint-per-file-ignores==1.4.0",
+    "pylint-plugin-utils==0.9.0",
+    "pylint-pydantic==0.3.5",
+    "ruff==0.14.5",
+    "types-stripe==3.5.2.20240106",
+    "yapf==0.43.0",
+]
+
+mysql = [
+    "pymysql==1.1.2",
+    "cryptography==46.0.3",
+]
+
+[project.urls]
+Homepage = "https://github.com/CarterPerez-dev/stripe-referral"
+Documentation = "https://github.com/CarterPerez-dev/stripe-referral#readme"
+Repository = "https://github.com/CarterPerez-dev/stripe-referral"
+Issues = "https://github.com/CarterPerez-dev/stripe-referral/issues"
+Website = "https://certgames.com"
+
+[build-system]
+requires = ["setuptools>=80.9.0", "wheel>=0.45.1"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["stripe_referral*"]
+exclude = ["tests*", "qa*"]
+
+[tool.setuptools.package-data]
+stripe_referral = ["py.typed"]
+
+[tool.setuptools.data-files]
+"alembic" = [
+    "alembic/env.py",
+    "alembic/README.rst",
+    "alembic/script.py.mako",
+    "alembic/versions/.gitkeep",
+]
+"" = ["alembic.ini"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 88
+indent-width = 4
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pycache__",
+    "_build",
+    "build",
+    "dist",
+    "site-packages",
+    "venv",
+    "alembic/versions",
+    ".angela",
+]
+
+[tool.ruff.lint]
+select = [
+    "E1",   # Indentation
+    "E4",   # Imports
+    "E7",   # Statement
+    "F",    # Pyflakes (all F rules)
+    "W292", # No newline at end of file
+    "W605", # Invalid escape sequence
+    "B",    # Bugbear
+    "C4",   # Comprehensions
+    "UP",   # Pyupgrade
+    "ARG",  # Unused arguments
+    "SIM",  # Simplify
+    "I",    # isort rules
+    "F401", # Unused imports
+    "F811", # Redefined imports
+    "F821", # Undefined name
+]
+
+ignore = [
+    "E501",   # Line length (handled by yapf)
+    "W291",   # Trailing whitespace
+    "W293",   # Blank line contains whitespace
+    "I001",   # Import sorting
+    "RUF001", # Ambiguous unicode
+    "RUF002", # Docstring with ambiguous unicode
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["ALL"]
+"tests/*" = [
+    "ARG001", "ARG002",
+    "ARG005",
+    "E712",
+    "F401",
+    "F841",
+    "SIM117",
+    "SIM300",
+    "W292",
+    "B007",
+    "B017",
+    "B904",
+]
+"alembic/versions/*.py" = ["ALL"]
+
+[tool.mypy]
+python_version = "3.11"
+namespace_packages = true
+explicit_package_bases = true
+
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+ignore_missing_imports = true
+check_untyped_defs = false
+
+show_error_codes = true
+pretty = true
+show_column_numbers = true
+show_error_context = true
+
+exclude = [
+    "alembic/versions",
+    "tests",
+    ".venv",
+    "venv",
+    "build",
+    "dist",
+    ".angela",
+]
+
+[[tool.mypy.overrides]]
+module = "stripe.*"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = "alembic.*"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = ["stripe_referral.repositories.*"]
+disable_error_code = ["no-any-return"]
+
+[[tool.mypy.overrides]]
+module = ["stripe_referral.services.*"]
+disable_error_code = ["no-any-return"]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+pythonpath = ["src"]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+addopts = [
+    "-ra",
+    "--strict-markers",
+    "--maxfail=2",
+    "-vv",
+]
+
+filterwarnings = [
+    "ignore::DeprecationWarning",
+]
+
+markers = [
+    "unit: Unit tests (may use mocks)",
+    "integration: Integration tests (real dependencies)",
+    "slow: Takes > 1 second",
+]
+
+env_files = [".env.testing"]
+asyncio_mode = "auto"
+
+[tool.coverage.run]
+source = ["src"]
+omit = [
+    "*/tests/*",
+    "*/alembic/*",
+    "*/__init__.py",
+    ".angela",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "pass",
+]
+
+[tool.deptry]
+known_first_party = ["stripe_referral"]
+ignore_notebooks = true
+extend_exclude = [
+    "tests",
+    "alembic",
+]
+
+[tool.bandit]
+exclude_dirs = [
+    "tests",
+    "alembic",
+    ".venv",
+    "venv",
+    ".angela",
+]
+skips = ["B104"]
+
+[tool.pylint.main]
+py-version = "3.11"
+jobs = 4
+init-hook = 'import sys; sys.path.append("src")'
+load-plugins = [
+    "pylint_pydantic",
+    "pylint_per_file_ignores",
+]
+persistent = true
+suggestion-mode = true
+ignore = [
+    "venv",
+    ".venv",
+    "__pycache__",
+    "build",
+    "dist",
+    ".git",
+    ".pytest_cache",
+    ".mypy_cache",
+    ".ruff_cache",
+    "alembic/versions",
+     ".angela",
+]
+ignore-paths = [
+    "^venv/.*",
+    "^.venv/.*",
+    "^build/.*",
+    "^dist/.*",
+    "^alembic/versions/.*",
+    ".*/tests/.*",
+    "^tests/.*",
+    ".angela",
+]
+
+[tool.pylint.messages_control]
+disable = [
+    "C0111",  # missing-docstring
+    "C0103",  # invalid-name
+    "R0903",  # too-few-public-methods
+    "W0511",  # fixme
+    "W0622",  # redefined-builtin
+    "W0612",  # unused-variable (handled by ruff)
+    "W0613",  # unused-argument (handled by ruff)
+    "C0301",  # Line too long
+    "C0302",  # Too many lines
+    "C0411",  # Wrong import order
+    "C0305",  # Trailing newlines
+    "C0303",  # Trailing whitespace
+    "C0304",  # Final newline missing
+    "R0801",  # Similar lines
+    "E0401",  # import-error (false positives with src layout)
+    "E0611",  # no-name-in-module (false positives)
+]
+
+per-file-ignores = [
+    "src/stripe_referral/adapters/:W0718,R0911",
+    "src/stripe_referral/services/:W0718",
+    "src/stripe_referral/database/Session.py:E1136",
+    "alembic/env.py:E1101,W0611",
+]
+
+[tool.pylint.format]
+max-line-length = 95
+
+[tool.pylint.design]
+max-args = 10
+max-attributes = 12
+max-branches = 15
+max-locals = 15
+max-statements = 50
