@@ -1,6 +1,6 @@
 [project]
 name = "stripe-referral"
-version = "0.1.0"
+version = "0.1.1"
 description = "Framework agnostic referral program package with Stripe Connect integration"
 requires-python = ">=3.11"
 readme = "README.rst"
@@ -35,13 +35,13 @@ classifiers = [
 ]
 
 dependencies = [
-    "alembic==1.17.2",
-    "pydantic==2.12.4",
-    "pydantic-settings==2.12.0",
-    "python-dotenv==1.2.1",
-    "sqlalchemy==2.0.44",
-    "stripe==13.2.0",
-    "psycopg2-binary==2.9.11",
+    "alembic>=1.17.0",
+    "pydantic>=2.10.0",
+    "pydantic-settings>=2.10.0",
+    "python-dotenv>=1.0.0",
+    "sqlalchemy>=2.0.0",
+    "stripe>=12.0.0",
+    "psycopg2-binary>=2.9.0",
 ]
 
 [project.optional-dependencies]

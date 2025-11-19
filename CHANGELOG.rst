@@ -56,7 +56,17 @@ Nothing yet.
 
 ----
 
-[0.1.0] - 2025-01-XX
+[0.1.1] - 2025-01-19
+====================
+
+Changed
+-------
+
+- Relaxed dependency version constraints to use >= instead of ==
+
+----
+
+[0.1.0] - 2025-01-19
 ====================
 
 Initial release.
